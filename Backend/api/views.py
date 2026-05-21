@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -153,12 +150,17 @@ def get_user_history(request):
     """
     Get user's food analysis history
     """
-    analyses = FoodAnalysis.objects.filter(user=request.user)[:50]
-    serializer = FoodAnalysisSerializer(analyses, many=True)
+    # Start with base queryset (no slice yet)
+    analyses = FoodAnalysis.objects.filter(user=request.user)
     
-    # Calculate today's totals
+    # Calculate today's totals using the unsliced queryset
     today = timezone.now().date()
     today_analyses = analyses.filter(created_at__date=today)
+    
+    # Now apply the slice for the history response
+    analyses_history = analyses[:50]
+    
+    serializer = FoodAnalysisSerializer(analyses_history, many=True)
     
     daily_totals = {
         'calories': sum(a.estimated_calories for a in today_analyses),
@@ -172,7 +174,6 @@ def get_user_history(request):
         'daily_totals': daily_totals,
         'count': analyses.count()
     })
-
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -230,7 +231,13 @@ def get_available_foods(request):
     """
     Get list of all foods the model can recognize
     """
-    if model_loader._label_encoder:
-        foods = model_loader._label_encoder.classes_.tolist()
+    # Use classes attribute from model loader (mock version)
+    if hasattr(model_loader, 'classes') and model_loader.classes:
+        foods = model_loader.classes
         return Response({'foods': foods, 'count': len(foods)})
-    return Response({'foods': [], 'count': 0})
+    
+    # Fallback hardcoded list
+    fallback_foods = ['caesar_salad', 'cheesecake', 'donuts', 'dumplings', 
+                      'french_toast', 'macarons', 'prime_rib', 'ramen', 
+                      'spaghetti_bolognese']
+    return Response({'foods': fallback_foods, 'count': len(fallback_foods)})

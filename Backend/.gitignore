@@ -9,7 +9,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-pythonenv*
+pythonenv*/
 
 # Django
 *.log
@@ -21,12 +21,6 @@ db.sqlite3-journal
 /staticfiles/
 /static/
 /media/
-
-# Virtual Environment
-venv/
-env/
-ENV/
-.venv
 
 # IDE
 .vscode/
@@ -49,11 +43,6 @@ ENV/
 .env
 .env.local
 .env.*.local
-
-# Model files (optional - uncomment if you don't want to push large model files)
-# *.pkl
-# *.h5
-# *.tflite
 
 # Uploaded media
 media/uploads/
@@ -83,3 +72,21 @@ Desktop.ini
 # Project specific
 staticfiles/
 *.bak
+
+# Raw dataset (large files)
+Data_MA/
+*.jpg
+*.jpeg
+*.png
+*.JPG
+*.JPEG
+*.PNG
+
+# Training outputs (already copied to ml_models)
+dietary_model/
+training/data/
+training/output/
+
+# Debug files
+debug_*.py
+check_*.py

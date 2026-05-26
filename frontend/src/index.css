@@ -1,0 +1,393 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+@theme {
+  --color-canvas: #F8FAFC;
+  --color-modern-bg: #FFFFFF;
+  --color-modern-text: #0F172A;
+  --color-modern-mute: #64748B;
+  --color-modern-indigo: #6C63FF;
+  --color-modern-indigo-hover: #5B53E0;
+  --color-modern-indigo-light: #EEEDFE;
+  --color-modern-emerald: #10B981;
+  --color-modern-emerald-light: #ECFDF5;
+  --color-modern-rose: #F43F5E;
+  --color-modern-rose-light: #FFF1F2;
+  --color-modern-border: #E2E8F0;
+  --color-brand: #6C63FF;
+  --color-brand-light: #EEEDFE;
+  --color-brand-dark: #534AB7;
+  --shadow-nf: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-nf-hover: 0 4px 20px rgba(108, 99, 255, 0.10);
+  --font-luxury: 'Outfit', 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-modern-text antialiased;
+    font-family: 'Inter', 'Outfit', sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6C63FF;
+  }
+}
+
+/* ── Core keyframes ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+
+  65% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dotBounce {
+
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: translateY(-7px);
+    opacity: 1;
+  }
+}
+
+@keyframes barGrow {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--w, 0%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-6px);
+  }
+
+  40% {
+    transform: translateX(6px);
+  }
+
+  60% {
+    transform: translateX(-4px);
+  }
+
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+  }
+}
+
+/* ── Animation utility classes ── */
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease both;
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.5s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.animate-popIn {
+  animation: popIn 0.45s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+.animate-spin-fast {
+  animation: spin 0.85s linear infinite;
+}
+
+.animate-shake {
+  animation: shake 0.4s ease both;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+.animate-dot1 {
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.animate-dot2 {
+  animation: dotBounce 1.2s ease-in-out 0.18s infinite;
+}
+
+.animate-dot3 {
+  animation: dotBounce 1.2s ease-in-out 0.36s infinite;
+}
+
+.animate-delay-80 {
+  animation-delay: 80ms;
+}
+
+.animate-delay-160 {
+  animation-delay: 160ms;
+}
+
+.animate-delay-240 {
+  animation-delay: 240ms;
+}
+
+/* ── Card system ── */
+.card-modern {
+  background: #FFFFFF;
+  border: 0.5px solid #E2E8F0;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-modern-hover:hover {
+  transform: translateY(-3px);
+  border-color: #CBD5E1;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07), 0 4px 8px rgba(15, 23, 42, 0.04);
+}
+
+/* ── Stat card lift ── */
+.stat-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.09);
+}
+
+/* ── Drop zone ── */
+.drop-zone {
+  transition: border-color 0.22s ease, background 0.22s ease, transform 0.15s ease;
+}
+
+.drop-zone:hover {
+  border-color: #6C63FF !important;
+  background: rgba(108, 99, 255, 0.03);
+}
+
+.drop-zone:hover .dz-icon {
+  transform: scale(1.12) translateY(-2px);
+}
+
+.drop-zone.drag-over {
+  border-color: #6C63FF !important;
+  background: rgba(108, 99, 255, 0.06);
+  transform: scale(1.01);
+}
+
+.dz-icon {
+  transition: transform 0.25s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ── Upload / action buttons ── */
+.upload-btn {
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.upload-btn:hover {
+  transform: scale(1.02);
+  border-color: #6C63FF;
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.10);
+}
+
+.upload-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Primary CTA ── */
+.primary-btn {
+  transition: opacity 0.15s ease, transform 0.12s ease;
+}
+
+.primary-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.01);
+}
+
+.primary-btn:active {
+  opacity: 0.88;
+  transform: scale(0.98);
+}
+
+/* ── Sidebar nav item ── */
+.nav-item {
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+
+.nav-item:hover {
+  transform: scale(1.06);
+}
+
+.nav-item:active {
+  transform: scale(0.96);
+}
+
+/* ── Macro progress bar ── */
+.macro-bar {
+  height: 6px;
+  border-radius: 99px;
+  animation: barGrow 0.8s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* ── Skeleton shimmer ── */
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* ── Staggered macro card pop-in ── */
+.macro-card-1 {
+  animation: popIn 0.4s 0.04s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.macro-card-2 {
+  animation: popIn 0.4s 0.13s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.macro-card-3 {
+  animation: popIn 0.4s 0.22s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

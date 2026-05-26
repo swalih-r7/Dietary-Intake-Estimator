@@ -9,7 +9,10 @@ class FoodAnalysisAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', 'updated_at']
     ordering = ['-created_at']
 
+
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'daily_calorie_goal', 'created_at']
-    search_fields = ['user__username']
+    list_display = ['user', 'role', 'daily_calorie_goal', 'created_at']
+    list_filter = ['role', 'created_at']
+    search_fields = ['user__username', 'license_number']
+    filter_horizontal = ['patients']

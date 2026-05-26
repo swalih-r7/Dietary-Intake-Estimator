@@ -1,0 +1,41 @@
+# ============================================
+# IDE and OS files (affects both frontend & backend)
+# ============================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+Desktop.ini
+
+# ============================================
+# Backup and Archive files
+# ============================================
+*.zip
+*.tar.gz
+*.7z
+nutri_bundle.zip
+NutriBundle.zip
+NutriFrontendBundle.zip
+*.bak
+*.backup
+
+# ============================================
+# Environment files (shared)
+# ============================================
+.env
+.env.local
+.env.*.local
+
+# ============================================
+# Logs (shared)
+# ============================================
+logs/
+*.log

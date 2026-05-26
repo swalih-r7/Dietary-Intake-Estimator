@@ -49,15 +49,48 @@ class FoodAnalysis(models.Model):
 
 class UserProfile(models.Model):
     """
-    Extended user profile
+    Extended user profile with role-based access
     """
+    USER_ROLES = (
+        ('patient', 'Patient'),
+        ('nutritionist', 'Nutritionist'),
+        ('admin', 'Admin'),
+    )
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    role = models.CharField(max_length=20, choices=USER_ROLES, default='patient')
+    
+    # Patient-specific fields
     daily_calorie_goal = models.IntegerField(default=2000)
     daily_protein_goal = models.FloatField(default=50)
     daily_carbs_goal = models.FloatField(default=250)
     daily_fat_goal = models.FloatField(default=70)
+    
+    # Physical stats (optional)
+    age = models.IntegerField(null=True, blank=True)
+    height = models.FloatField(null=True, blank=True)  # in cm
+    weight = models.FloatField(null=True, blank=True)  # in kg
+    
+    # Nutritionist-specific fields
+    license_number = models.CharField(max_length=50, blank=True, null=True)
+    specialization = models.CharField(max_length=100, blank=True, null=True)
+    hospital_affiliation = models.CharField(max_length=200, blank=True, null=True)
+    
+    # Relationship: Nutritionist can have many patients
+    patients = models.ManyToManyField('self', symmetrical=False, blank=True, 
+                                      related_name='nutritionists')
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.user.username}'s Profile"
+        return f"{self.user.username} - {self.get_role_display()}"
+    
+    def is_patient(self):
+        return self.role == 'patient'
+    
+    def is_nutritionist(self):
+        return self.role == 'nutritionist'
+    
+    def is_admin(self):
+        return self.role == 'admin'

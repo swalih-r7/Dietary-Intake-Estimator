@@ -451,8 +451,6 @@ This project is licensed under the [MIT License](LICENSE).
 | Muhammed Swalih | Backend · AI/ML · Database |
 | Mohamed Sahil Vellathur | Frontend · UI/UX · API Integration |
 
-**Mentor:** Akhil Ashraf Ali
-
 ---
 
 ## 🙏 Acknowledgements

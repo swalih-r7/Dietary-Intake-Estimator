@@ -521,7 +521,7 @@ export default function Dashboard({ metrics, onAddMeal, user, userRole }) {
           </div>
 
           {/* Food List - Real data from your dataset */}
-          <div className="space-y-1 max-h-[380px] overflow-y-auto pr-1">
+          <div className="space-y-1 max-h-95 overflow-y-auto pr-1">
             {foodLoading ? (
               <div className="flex justify-center py-6">
                 <div className="w-5 h-5 border-2 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
@@ -565,7 +565,7 @@ export default function Dashboard({ metrics, onAddMeal, user, userRole }) {
 
       {/* Camera Modal */}
       {isCameraOpen && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
           <div className="bg-white rounded-2xl p-5 shadow-xl max-w-md w-full border border-slate-100 flex flex-col gap-4 relative animate-fade-up">
             <div className="flex justify-between items-center">
               <h3 className="text-base font-bold text-slate-800">Scan Meal Plate</h3>

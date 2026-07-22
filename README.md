@@ -448,8 +448,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 | Name | Role |
 |------|------|
-| Muhammed Swalih | Backend · AI/ML · Database |
-| Mohamed Sahil Vellathur | Frontend · UI/UX · API Integration |
+| Muhammed Swalih | Backend · AI/ML · Database · API Integration |
+| Mohamed Sahil Vellathur | Frontend · UI/UX |
 
 ---
 
